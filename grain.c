@@ -16,40 +16,38 @@ int main (int argc, char *argv[])
 int i, j, k;
 timing_t tstart, tend;
 double  M[N][N+1],           /* matrix A to be multiplied */
-  b[N][N],           /* matrix B to be multiplied */
-  c[N][N];           /* result matrix C */
-
-  C = (N * E_h) + E_d
-
-  for (i=0; i<N; i++)
-   for (j=0; j<N+1; j++)
-     if (j == N) {
-       M[i][j]= E_d / C;
-     }
-     M[i][j]= E_h / C;
-
-
-  for (i=0; i<n; i++)
-   for (j=0; j<n; j++)
-     b[i][j] = NONE;
-
-  // for (i=0; i<N; i++)
-  //   for (j=0; j<N; j++)
-  //     c[i][j]= E_h;
+b[N][N],           /* matrix B to be multiplied */
+c[N][N];           /* result matrix C */
 
 get_time(&tstart);
 
-  for (i=0; i<N; i++)
-    {
-    for(j=0; j<N; j++)
-      for (k=0; k<N; k++)
-        c[i][j] += a[i][k] * b[k][j];
-    }
+C = (N * E_h) + E_d
+
+for (i=0; i<N; i++)
+ for (j=0; j<N+1; j++)
+   if (j == N) {
+     M[i][j]= E_d / C;
+   }
+   M[i][j]= E_h / C;
+
+
+for (i=0; i<n; i++)
+ for (j=0; j<n; j++)
+   b[i][j] = NONE;
+
+
+
+for (i=0; i<N; i++)
+  {
+  for(j=0; j<N; j++)
+    for (k=0; k<N; k++)
+      c[i][j] += a[i][k] * b[k][j];
+  }
 
 get_time(&tend);
 
 
-   printf("Elapsed time: %g s\n", timespec_diff(tstart, tend));
+ printf("Elapsed time: %g s\n", timespec_diff(tstart, tend));
 
   printf("*****************************************************\n");
 
